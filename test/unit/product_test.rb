@@ -11,6 +11,14 @@ require 'test_helper'
 class ProductTest < ActiveSupport::TestCase
   fixtures :products
 
+  test 'title must not be short' do
+    product = Product.new(title:       "book",
+                          description: "yyy",
+                          image_url:   "zzz.jpg")
+    assert product.invalid?
+    assert_equal ["is too short (minimum is 5 characters)"], product.errors[:title]
+  end
+
   test "product attributes must not be empty" do
     product = Product.new
     assert product.invalid?
