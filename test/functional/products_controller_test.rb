@@ -1,19 +1,28 @@
+#---
+# Excerpted from "Agile Web Development with Rails",
+# published by The Pragmatic Bookshelf.
+# Copyrights apply to this code. It may not be used to create training material, 
+# courses, books, articles, and the like. Contact us if you are in doubt.
+# We make no guarantees that this code is fit for any purpose. 
+# Visit http://www.pragmaticprogrammer.com/titles/rails4 for more book information.
+#---
 require 'test_helper'
 
 class ProductsControllerTest < ActionController::TestCase
   setup do
     @product = products(:one)
+    @update = {
+      title:       'Lorem Ipsum',
+      description: 'Wibbles are fun!',
+      image_url:   'lorem.jpg',
+      price:       19.95
+    }
   end
 
   test "should get index" do
     get :index
     assert_response :success
     assert_not_nil assigns(:products)
-    assert_select '.list_actions', /Show/
-    assert_select '.list_actions', /Edit/
-    assert_select '.list_actions', /Destroy/
-    assert_select 'h1', 'Listing products'
-    assert_select 'a', 'New product'
   end
 
   test "should get new" do
@@ -23,7 +32,7 @@ class ProductsControllerTest < ActionController::TestCase
 
   test "should create product" do
     assert_difference('Product.count') do
-      post :create, product: { description: @product.description, image_url: @product.image_url, price: @product.price, title: @product.title << '_new' }
+      post :create, product: @update
     end
 
     assert_redirected_to product_path(assigns(:product))
@@ -40,8 +49,16 @@ class ProductsControllerTest < ActionController::TestCase
   end
 
   test "should update product" do
-    put :update, id: @product, product: { description: @product.description, image_url: @product.image_url, price: @product.price, title: @product.title << '_new' }
+    put :update, id: @product, product: @update
     assert_redirected_to product_path(assigns(:product))
+  end
+
+  test "can't delete product in cart" do
+    assert_difference('Product.count', 0) do
+      delete :destroy, id: products(:ruby)
+    end
+
+    assert_redirected_to products_path
   end
 
   test "should destroy product" do

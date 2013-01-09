@@ -9,16 +9,6 @@
 require 'test_helper'
 
 class ProductTest < ActiveSupport::TestCase
-  fixtures :products
-
-  test 'title must not be short' do
-    product = Product.new(title:       "book",
-                          description: "yyy",
-                          image_url:   "zzz.jpg")
-    assert product.invalid?
-    assert_equal ["is too short (minimum is 5 characters)"], product.errors[:title]
-  end
-
   test "product attributes must not be empty" do
     product = Product.new
     assert product.invalid?
@@ -34,11 +24,13 @@ class ProductTest < ActiveSupport::TestCase
                           image_url:   "zzz.jpg")
     product.price = -1
     assert product.invalid?
-    assert_equal ["must be greater than or equal to 0.01"], product.errors[:price]
+    assert_equal ["must be greater than or equal to 0.01"],
+      product.errors[:price]
 
     product.price = 0
     assert product.invalid?
-    assert_equal ["must be greater than or equal to 0.01"], product.errors[:price]
+    assert_equal ["must be greater than or equal to 0.01"], 
+      product.errors[:price]
 
     product.price = 1
     assert product.valid?
@@ -66,7 +58,7 @@ class ProductTest < ActiveSupport::TestCase
   end
 
   test "product is not valid without a unique title" do
-    product = Product.new(title:       products(:one).title,
+    product = Product.new(title:       products(:ruby).title,
                           description: "yyy", 
                           price:       1, 
                           image_url:   "fred.gif")
@@ -76,7 +68,7 @@ class ProductTest < ActiveSupport::TestCase
   end
 
   test "product is not valid without a unique title - i18n" do
-    product = Product.new(title:       products(:one).title,
+    product = Product.new(title:       products(:ruby).title,
                           description: "yyy", 
                           price:       1, 
                           image_url:   "fred.gif")

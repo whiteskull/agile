@@ -4,14 +4,15 @@
 one:
   title: MyString
   description: MyText
-  image_url: some.png
+  image_url: MyString
   price: 9.99
 
 two:
   title: MyString
   description: MyText
-  image_url: other.jpg
+  image_url: MyString
   price: 9.99
+#START:ruby
 
 ruby: 
   title:       Programming Ruby 1.9
@@ -21,3 +22,4 @@ ruby:
     delivered fast, you should add Ruby to your toolbox.
   price:       49.50
   image_url:   ruby.png 
+#END:ruby
