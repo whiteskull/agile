@@ -1,0 +1,62 @@
+Connecting to database specified by database.yml
+Started GET "/" for 127.0.0.1 at 2013-01-12 10:37:23 +0400
+Started GET "/" for 127.0.0.1 at 2013-01-12 10:37:23 +0400
+Processing by StoreController#index as HTML
+Processing by StoreController#index as HTML
+Completed 500 Internal Server Error in 28ms
+Completed 500 Internal Server Error in 26ms
+
+ActiveRecord::StatementInvalid (Could not find table 'carts'):
+  app/controllers/application_controller.rb:20:in `rescue in current_cart'
+  app/controllers/application_controller.rb:18:in `current_cart'
+  app/controllers/store_controller.rb:16:in `index'
+
+
+
+ActiveRecord::StatementInvalid (Could not find table 'carts'):
+  app/controllers/application_controller.rb:20:in `rescue in current_cart'
+  app/controllers/application_controller.rb:18:in `current_cart'
+  app/controllers/store_controller.rb:16:in `index'
+
+
+Connecting to database specified by database.yml
+Started GET "/en" for 127.0.0.1 at 2013-01-12 10:44:29 +0400
+Processing by StoreController#index as HTML
+  Parameters: {"locale"=>"en"}
+Completed 500 Internal Server Error in 9ms
+
+ActiveRecord::StatementInvalid (Could not find table 'carts'):
+  app/controllers/application_controller.rb:18:in `current_cart'
+  app/controllers/store_controller.rb:16:in `index'
+
+
+Connecting to database specified by database.yml
+Migrating to CreateProducts (20130104190818)
+Migrating to ChangeDesciptionNameInProducts (20130104193056)
+Migrating to CreateCarts (20130105102750)
+Migrating to CreateLineItems (20130106080415)
+Migrating to AddQuantityToLineItems (20130108073343)
+Migrating to AddPriceToLineItems (20130108084214)
+Migrating to CreateOrders (20130109160816)
+Migrating to AddOrderIdToLineItem (20130109160916)
+Migrating to CreateUsers (20130110153926)
+Connecting to database specified by database.yml
+Started GET "/en" for 127.0.0.1 at 2013-01-12 10:46:04 +0400
+Processing by StoreController#index as HTML
+  Parameters: {"locale"=>"en"}
+Completed 500 Internal Server Error in 1ms
+
+ActiveRecord::StatementInvalid (Could not find table 'carts'):
+  app/controllers/application_controller.rb:18:in `current_cart'
+  app/controllers/store_controller.rb:16:in `index'
+
+
+Started GET "/" for 127.0.0.1 at 2013-01-12 10:46:17 +0400
+Processing by StoreController#index as HTML
+Completed 500 Internal Server Error in 1ms
+
+ActiveRecord::StatementInvalid (Could not find table 'carts'):
+  app/controllers/application_controller.rb:18:in `current_cart'
+  app/controllers/store_controller.rb:16:in `index'
+
+

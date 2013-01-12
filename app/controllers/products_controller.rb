@@ -14,6 +14,7 @@ class ProductsController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
+      format.xml
       format.json { render json: @products }
     end
   end
@@ -91,6 +92,16 @@ class ProductsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to products_url }
       format.json { head :no_content }
+    end
+  end
+
+  def who_bought
+    @product = Product.find(params[:id])
+    respond_to do |format|
+      format.html
+      format.xml
+      format.atom
+      format.json { render json: @product.to_json(include: :orders) }
     end
   end
 end
